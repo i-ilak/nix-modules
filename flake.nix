@@ -12,7 +12,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       flake-utils,
       treefmt-nix,
@@ -27,7 +26,7 @@
       {
         formatter = treefmt.config.build.wrapper;
 
-        checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") (
+        checks =
           let
             inherit (pkgs) lib;
             nfsExportResults = lib.runTests (import ./tests/nfs-export.nix { inherit lib; });
@@ -45,8 +44,7 @@
                   exit 1
                 ''
             );
-          }
-        );
+          };
       }
     )
     // {
@@ -105,6 +103,13 @@
         nfs-server = ./modules/nixos/nfs-server.nix;
         restic-backup = ./modules/nixos/restic-backup.nix;
         packages = ./modules/nixos/packages.nix;
+        default = {
+          imports = [
+            ./modules/shared/global_variables
+            ./modules/nixos/locale.nix
+            ./modules/nixos/packages.nix
+          ];
+        };
       };
 
       darwinModules = {
@@ -115,6 +120,15 @@
         homebrew = ./modules/darwin/homebrew.nix;
         aerospace = ./modules/darwin/aerospace.nix;
         casks = ./modules/darwin/casks.nix;
+        default = {
+          imports = [
+            ./modules/shared/global_variables
+            ./modules/darwin/system.nix
+            ./modules/darwin/homebrew.nix
+            ./modules/darwin/aerospace.nix
+            ./modules/darwin/casks.nix
+          ];
+        };
       };
 
       lib = {

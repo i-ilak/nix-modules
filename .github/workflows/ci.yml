@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+      - "CLAUDE.md"
+  pull_request:
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - name: Check formatting
+        run: nix fmt -- --ci .
+      - name: Check for anti-patterns
+        run: nix run nixpkgs#statix -- check .
+      - name: Check for unused code
+        run: nix run nixpkgs#deadnix -- --fail .
+  eval:
+    name: Evaluate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - name: Evaluate flake
+        run: nix flake check
