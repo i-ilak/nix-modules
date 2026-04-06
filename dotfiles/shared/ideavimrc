@@ -1,0 +1,100 @@
+" Source shared vim configuration
+source ~/.vimrc
+
+" -----------------------------------------------------------
+" IdeaVim Plugins
+" -----------------------------------------------------------
+set surround
+set ReplaceWithRegister
+
+" -----------------------------------------------------------
+" IntelliJ-specific settings
+" -----------------------------------------------------------
+set ideajoin
+set ideastatusicon=gray
+set clipboard+=unnamed,unnamedplus
+
+" -----------------------------------------------------------
+" IDE-specific overrides
+" -----------------------------------------------------------
+" Save / quit - override vimrc mappings with IDE actions
+nnoremap <C-s> :action SaveAll<CR>
+nnoremap <leader>q :action Exit<CR>
+
+" Close tab - override vimrc mapping
+nnoremap <leader>x :action CloseContent<CR>
+
+" Window splits - override vimrc mappings
+nnoremap <leader>w- :action SplitHorizontally<CR>
+nnoremap <leader>w\| :action SplitVertically<CR>
+nnoremap <leader>wr :action UnsplitAll<CR>
+
+" -----------------------------------------------------------
+" Code navigation (IDE-specific)
+" -----------------------------------------------------------
+nnoremap <leader>gd :action GotoDeclaration<CR>
+nnoremap <leader>gr :action ShowUsages<CR>
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>gD :action GotoTypeDeclaration<CR>
+
+" Rename symbol
+nnoremap <leader>rr :action RenameElement<CR>
+
+" Code actions
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+
+" -----------------------------------------------------------
+" Search / Navigation (IDE-specific)
+" -----------------------------------------------------------
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <leader>fb :action RecentFiles<CR>
+nnoremap <leader>fs :action FileStructurePopup<CR>
+nnoremap <leader>fS :action GotoSymbol<CR>
+nnoremap <leader>fw :action SearchEverywhere<CR>
+
+" Jump between errors
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap ]d :action GotoNextError<CR>
+
+" -----------------------------------------------------------
+" Folding - override vimrc mappings with IDE actions
+" -----------------------------------------------------------
+nnoremap ä :action CollapseRegionRecursively<CR>
+nnoremap Ä :action ExpandRegionRecursively<CR>
+nnoremap <leader>zR :action ExpandAllRegions<CR>
+nnoremap <leader>zM :action CollapseAllRegions<CR>
+
+" -----------------------------------------------------------
+" IDE-specific features
+" -----------------------------------------------------------
+" Toggle project tool window - override vimrc mapping
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+
+" Open terminal
+nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
+
+" Format / organize imports
+nnoremap <leader>f :action ReformatCode<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+
+" Show error description
+nnoremap <leader>` :action ShowErrorDescription<CR>
+nnoremap <leader>ga :action ShowIntentionActions<CR>
+
+" Bookmarks
+nnoremap <leader>m :action ToggleBookmark<CR>
+nnoremap <leader>M :action ShowBookmarks<CR>
+
+" Switch between header/source
+nnoremap <C-k><C-o> :action SwitchHeaderSource<CR>
+
+" Comment - override vimrc mappings with IDE actions
+nnoremap <leader>c :action CommentByLineComment<CR>
+vnoremap <leader>c :action CommentByBlockComment<CR>
+
+" Switch between tabs
+nnoremap <Tab> :action NextTab<CR>
+nnoremap <S-Tab> :action PreviousTab<CR>
+
+nnoremap <C-]><C-]> :action FocusEditor<CR>

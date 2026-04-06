@@ -1,0 +1,6 @@
+[
+  {
+    "key": "ctrl+] ctrl+]",
+    "command": "workbench.action.focusActiveEditorGroup"
+  }
+]

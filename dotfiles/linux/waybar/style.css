@@ -1,0 +1,112 @@
+@import "mocha.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(26, 27, 38, 0.5);
+    /* background: @base; */
+    color: @text;
+}
+
+
+#custom-date, #clock, #battery, #pulseaudio, #network, #idle_inhibitor, #custom-packages, #backlight, #cpu {
+	background-color: #252733;
+	padding: 0px 10px;
+	margin: 5px 0px;
+    border-radius: 5px;
+}
+
+#cpu {
+    color: @green;
+}
+
+#backlight {
+    color: @maroon;
+}
+
+#custom-packages {
+    color: @blue;
+}
+
+#custom-date {
+	color: @mauve;
+    margin: 5px 10px 5px 0px;
+}
+
+#custom-power {
+	color: @red;
+	border-radius: 5px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	padding: 0px 5px;
+}
+
+#clock {
+    color: @rosewater;
+    border-radius: 5px 5px 5px 5px;
+    margin-right: 10px;
+}
+
+#battery {
+    color: @sky;
+}
+
+@keyframes blink {
+    to {
+        background-color: white;
+        color: black;
+    }
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network {
+	color: @yellow;
+}
+
+#pulseaudio {
+	color: @peach;
+	border-radius: 5px 0px 0px 5px;
+}
+
+#workspaces {
+	background-color: #252733;
+	margin: 5px;
+	margin-left: 10px;
+	border-radius: 5px;
+}
+#workspaces button {
+    padding: 0 10px;
+    color: #7a95c9;
+}
+
+#workspaces button.active {
+    color: @red;
+    /* background-color: @red; */
+    border-radius: 5px;
+}
+
+#workspaces button:hover {
+	background-color: @pink;
+	border-radius: 5px;
+}
