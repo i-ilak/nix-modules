@@ -30,6 +30,7 @@
           let
             inherit (pkgs) lib;
             nfsExportResults = lib.runTests (import ./tests/nfs-export.nix { inherit lib; });
+            persistResults = lib.runTests (import ./tests/persist.nix { inherit lib; });
           in
           {
             nfs-export = pkgs.runCommand "nfs-export-test" { } (
@@ -41,6 +42,20 @@
               else
                 ''
                   echo "Test failures: ${builtins.toJSON nfsExportResults}"
+                  exit 1
+                ''
+            );
+            persist = pkgs.runCommand "persist-test" { } (
+              if persistResults == [ ] then
+                ''
+                  echo "All persist tests passed"
+                  touch $out
+                ''
+              else
+                ''
+                  cat <<'EOF'
+                  Test failures: ${builtins.toJSON persistResults}
+                  EOF
                   exit 1
                 ''
             );
@@ -102,6 +117,7 @@
         nfs-client = ./modules/nixos/nfs-client.nix;
         nfs-server = ./modules/nixos/nfs-server.nix;
         restic-backup = ./modules/nixos/restic-backup.nix;
+        persist = ./modules/nixos/persist.nix;
         packages = ./modules/nixos/packages.nix;
         default = {
           imports = [
