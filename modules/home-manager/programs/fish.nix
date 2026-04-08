@@ -13,6 +13,12 @@ in
     interactiveShellInit = ''
       set fish_greeting
 
+      # As of fish 4.3, fish_key_bindings is no longer set in universal scope
+      # by default — declare it explicitly as a global so the binding is
+      # managed by Nix and fish's one-shot conf.d migration shim
+      # (~/.config/fish/conf.d/fish_frozen_key_bindings.fish) is unnecessary.
+      set -g fish_key_bindings fish_default_key_bindings
+
       set -x FZF_DEFAULT_COMMAND "fd . $HOME"
       set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
       set -x FZF_ALT_C_COMMAND "fd -t d . $HOME"
