@@ -119,6 +119,8 @@
         restic-backup = ./modules/nixos/restic-backup.nix;
         persist = ./modules/nixos/persist.nix;
         packages = ./modules/nixos/packages.nix;
+        mosquitto = ./modules/nixos/mosquitto.nix;
+        zigbee2mqtt = ./modules/nixos/zigbee2mqtt.nix;
         default = {
           imports = [
             ./modules/shared/global_variables
