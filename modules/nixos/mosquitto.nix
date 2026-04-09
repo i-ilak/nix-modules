@@ -46,10 +46,10 @@ in
       listeners = [
         {
           address = cfg.listenAddress;
-          port = cfg.port;
+          inherit (cfg) port;
           settings.allow_anonymous = false;
           users = lib.mapAttrs (_: userCfg: {
-            hashedPasswordFile = userCfg.hashedPasswordFile;
+            inherit (userCfg) hashedPasswordFile;
             acl = [ "readwrite #" ];
           }) cfg.users;
         }

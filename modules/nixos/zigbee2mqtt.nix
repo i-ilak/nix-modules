@@ -11,9 +11,9 @@ let
   # `!secret mqtt_password` in configuration.yaml resolves at runtime.
   # Runs as root ('+' prefix) so it can read sops-managed secret files.
   preStartScript = pkgs.writeShellScript "zigbee2mqtt-secrets" ''
-    install -m 600 -o zigbee2mqtt -g zigbee2mqtt /dev/null "${cfg.dataDir}/secrets.yaml"
+    install -m 600 -o zigbee2mqtt -g zigbee2mqtt /dev/null "${cfg.dataDir}/secret.yaml"
     printf 'mqtt_password: %s\n' "$(< ${cfg.mqtt.passwordFile})" \
-      > "${cfg.dataDir}/secrets.yaml"
+      > "${cfg.dataDir}/secret.yaml"
   '';
 in
 {
@@ -102,16 +102,15 @@ in
 
     services.zigbee2mqtt = {
       enable = true;
-      dataDir = cfg.dataDir;
+      inherit (cfg) dataDir;
       settings = {
         serial = {
           port = cfg.serialPort;
-          adapter = cfg.adapter;
+          inherit (cfg) adapter;
         };
         mqtt = {
           base_topic = "zigbee2mqtt";
-          server = cfg.mqtt.server;
-          user = cfg.mqtt.user;
+          inherit (cfg.mqtt) server user;
           # Resolved at runtime from secrets.yaml written by preStartScript.
           password = "!secret mqtt_password";
         };
@@ -120,8 +119,7 @@ in
       }
       // lib.optionalAttrs cfg.frontend.enable {
         frontend = {
-          host = cfg.frontend.host;
-          port = cfg.frontend.port;
+          inherit (cfg.frontend) host port;
         };
       };
     };
