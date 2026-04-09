@@ -103,29 +103,27 @@ in
     services.zigbee2mqtt = {
       enable = true;
       dataDir = cfg.dataDir;
-      settings =
-        {
-          serial = {
-            port = cfg.serialPort;
-            adapter = cfg.adapter;
-          };
-          mqtt = {
-            base_topic = "zigbee2mqtt";
-            server = cfg.mqtt.server;
-            user = cfg.mqtt.user;
-            # Resolved at runtime from secrets.yaml written by preStartScript.
-            password = "!secret mqtt_password";
-          };
-          homeassistant = true;
-          permit_join = false;
-          advanced.log_level = "info";
-        }
-        // lib.optionalAttrs cfg.frontend.enable {
-          frontend = {
-            host = cfg.frontend.host;
-            port = cfg.frontend.port;
-          };
+      settings = {
+        serial = {
+          port = cfg.serialPort;
+          adapter = cfg.adapter;
         };
+        mqtt = {
+          base_topic = "zigbee2mqtt";
+          server = cfg.mqtt.server;
+          user = cfg.mqtt.user;
+          # Resolved at runtime from secrets.yaml written by preStartScript.
+          password = "!secret mqtt_password";
+        };
+        permit_join = false;
+        advanced.log_level = "info";
+      }
+      // lib.optionalAttrs cfg.frontend.enable {
+        frontend = {
+          host = cfg.frontend.host;
+          port = cfg.frontend.port;
+        };
+      };
     };
 
     systemd.services.zigbee2mqtt.serviceConfig = {
