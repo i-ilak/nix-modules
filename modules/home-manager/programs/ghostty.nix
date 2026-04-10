@@ -1,21 +1,23 @@
-_: {
-  programs.ghostty = {
+{ lib, ... }:
+{
+  config.programs.ghostty = {
     enable = true;
+    package = lib.mkDefault null;
     enableFishIntegration = true;
     settings = {
-      theme = "catppuccin-mocha";
-      gtk-titlebar = false;
-      font-size = 14;
-      font-family = "UDEV Gothic NF Regular";
-      font-family-bold = "UDEV Gothic NF Bold";
-      font-family-italic = "UDEV Gothic NF Italic";
-      font-family-bold-italic = "UDEV Gothic NF Bold Italic";
-      font-feature = "-calt";
+      theme = lib.mkDefault "catppuccin-mocha";
+      gtk-titlebar = lib.mkDefault false;
+      font-size = lib.mkDefault 14;
+      font-family = lib.mkDefault "UDEV Gothic NF Regular";
+      font-family-bold = lib.mkDefault "UDEV Gothic NF Bold";
+      font-family-italic = lib.mkDefault "UDEV Gothic NF Italic";
+      font-family-bold-italic = lib.mkDefault "UDEV Gothic NF Bold Italic";
+      font-feature = lib.mkDefault "-calt";
 
-      clipboard-read = "allow";
-      clipboard-write = "allow";
-      window-theme = "dark";
-      macos-titlebar-style = "hidden";
+      clipboard-read = lib.mkDefault "allow";
+      clipboard-write = lib.mkDefault "allow";
+      window-theme = lib.mkDefault "dark";
+      macos-titlebar-style = lib.mkDefault "tabs";
     };
   };
 }
