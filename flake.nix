@@ -168,7 +168,7 @@
 
       lib = {
         nfs = import ./lib/nfs.nix;
-        vim = import ./lib/vim { lib = nixpkgs.lib; };
+        vim = import ./lib/vim { inherit (nixpkgs) lib; };
       };
     };
 }

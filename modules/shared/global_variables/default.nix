@@ -79,6 +79,12 @@
       description = "Git identity and signing configuration.";
     };
 
+    sshPublicKeys = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = { };
+      description = "Named SSH public keys used across the infrastructure (e.g. admin, deploy).";
+    };
+
     desktop = lib.mkOption {
       type = lib.types.submodule {
         options = {
