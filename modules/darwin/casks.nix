@@ -16,6 +16,7 @@ _: [
   # Development Tools
   "visual-studio-code"
   "ghostty"
+  "clion"
 
   # Entertainment Tools
   "calibre"

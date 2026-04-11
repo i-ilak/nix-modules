@@ -26,6 +26,23 @@
       {
         formatter = treefmt.config.build.wrapper;
 
+        packages =
+          let
+            vimLib = import ./lib/vim { inherit (pkgs) lib; };
+            mkPrinter =
+              name: content: pkgs.writeShellScriptBin name "cat ${pkgs.writeText "${name}.txt" content}";
+          in
+          {
+            show-vimrc = mkPrinter "show-vimrc" (vimLib.generateVimrc { });
+            show-ideavimrc = mkPrinter "show-ideavimrc" (vimLib.generateIdeavimrc { });
+            show-vscode-settings = mkPrinter "show-vscode-settings" (
+              builtins.toJSON (vimLib.generateVscodeSettings { })
+            );
+            show-vscode-keybindings = mkPrinter "show-vscode-keybindings" (
+              builtins.toJSON (vimLib.generateVscodeKeybindings { })
+            );
+          };
+
         checks =
           let
             inherit (pkgs) lib;
@@ -151,6 +168,7 @@
 
       lib = {
         nfs = import ./lib/nfs.nix;
+        vim = import ./lib/vim { lib = nixpkgs.lib; };
       };
     };
 }
