@@ -60,16 +60,21 @@ in
     ];
     shellAliases = {
       vim = "nvim";
-      ip = "ip --color=auto";
       ll = "eza -l";
       ls = "eza -g";
       tree = "eza -T";
       mkdir = "mkdir -p";
       diff = "colordiff --nobanner";
-      df = "df -Tha --total";
       du = "du -h";
       ps = "procs";
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      ip = "ip --color=auto";
+      df = "df -Tha --total";
       flame = "flameshot gui";
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      df = "df -h";
     };
     shellInitLast = ''
       set -gx PATH ${homeDir}/.cargo/bin $PATH

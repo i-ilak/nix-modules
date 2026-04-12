@@ -24,7 +24,6 @@ let
   developer_tools = with pkgs; [
     uv
     just
-    docker
     ninja
     rustc
     cargo
