@@ -7,6 +7,7 @@ let
 in
 {
   stateVersion = 6;
+  startup.chime = false;
   checks.verifyNixPath = false;
 
   primaryUser = user;
