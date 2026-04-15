@@ -33,6 +33,7 @@ in
       InitialKeyRepeat = 15;
 
       "com.apple.mouse.tapBehavior" = 1;
+      "com.apple.keyboard.fnState" = true;
       "com.apple.sound.beep.volume" = 0.0;
       "com.apple.sound.beep.feedback" = 0;
 
@@ -74,6 +75,18 @@ in
     CustomUserPreferences = {
       "com.apple.screensaver" = {
         idleTime = 0; # 0 = never
+      };
+      # Disable Spotlight keyboard shortcut so Raycast can claim Cmd+Space
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          # 64 = Spotlight search, 65 = Finder search window
+          "64" = {
+            enabled = false;
+          };
+          "65" = {
+            enabled = false;
+          };
+        };
       };
     };
 

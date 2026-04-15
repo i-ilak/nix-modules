@@ -1,5 +1,6 @@
 _: [
   # Utility
+  "raycast"
   "eurkey"
   "scroll-reverser"
   "desktoppr"
