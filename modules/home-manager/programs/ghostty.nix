@@ -18,6 +18,7 @@
       clipboard-write = lib.mkDefault "allow";
       window-theme = lib.mkDefault "dark";
       macos-titlebar-style = lib.mkDefault "tabs";
+      maximize = lib.mkDefault true;
     };
   };
 }
