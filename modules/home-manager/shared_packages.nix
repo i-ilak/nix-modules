@@ -7,6 +7,17 @@
 }:
 let
   cli_tools = with pkgs; [
+    bash-completion
+    wget
+    zip
+    unzip
+    colordiff
+    grc
+    htop
+    jq
+    tree
+    libfido2
+    libiconv
     fd # `find` alternative
     bat # is better than `cat`
     eza # Alternative to `ls`
@@ -27,6 +38,9 @@ let
     ninja
     rustc
     cargo
+    nixpkgs-fmt
+    nixos-anywhere
+    sshpass
     nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     llvmPackages_20.clang-unwrapped
   ];

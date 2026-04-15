@@ -155,6 +155,7 @@
         homebrew = ./modules/darwin/homebrew.nix;
         aerospace = ./modules/darwin/aerospace.nix;
         casks = ./modules/darwin/casks.nix;
+        power = ./modules/darwin/power.nix;
         default = {
           imports = [
             ./modules/shared/global_variables
@@ -162,6 +163,7 @@
             ./modules/darwin/homebrew.nix
             ./modules/darwin/aerospace.nix
             ./modules/darwin/casks.nix
+            ./modules/darwin/power.nix
           ];
         };
       };

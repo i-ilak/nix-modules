@@ -71,6 +71,12 @@ in
       wvous-tr-corner = 1;
     };
 
+    CustomUserPreferences = {
+      "com.apple.screensaver" = {
+        idleTime = 0; # 0 = never
+      };
+    };
+
     screencapture = {
       location = "/Users/${user}/Downloads/temp";
       type = "png";
