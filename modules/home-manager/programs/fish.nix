@@ -17,7 +17,7 @@ in
       # by default — declare it explicitly as a global so the binding is
       # managed by Nix and fish's one-shot conf.d migration shim
       # (~/.config/fish/conf.d/fish_frozen_key_bindings.fish) is unnecessary.
-      set -g fish_key_bindings fish_default_key_bindings
+      set -g fish_key_bindings fish_vi_key_bindings
 
       set -x FZF_DEFAULT_COMMAND "fd . $HOME"
       set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"

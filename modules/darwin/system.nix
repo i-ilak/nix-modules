@@ -37,8 +37,11 @@ in
       "com.apple.sound.beep.volume" = 0.0;
       "com.apple.sound.beep.feedback" = 0;
 
+      AppleKeyboardUIMode = 3;
+
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
       NSAutomaticWindowAnimationsEnabled = false;
@@ -73,6 +76,31 @@ in
     };
 
     CustomUserPreferences = {
+      ".GlobalPreferences" = {
+        "com.apple.mouse.scaling" = 1.75;
+        AppleMiniaturizeOnDoubleClick = false;
+      };
+      "com.apple.HIToolbox" = {
+        AppleEnabledInputSources = [
+          {
+            InputSourceKind = "Keyboard Layout";
+            "KeyboardLayout ID" = 0;
+            "KeyboardLayout Name" = "U.S.";
+          }
+          {
+            InputSourceKind = "Keyboard Layout";
+            "KeyboardLayout ID" = -14519;
+            "KeyboardLayout Name" = "EurKEY v1.2";
+          }
+        ];
+        AppleSelectedInputSources = [
+          {
+            InputSourceKind = "Keyboard Layout";
+            "KeyboardLayout ID" = -14519;
+            "KeyboardLayout Name" = "EurKEY v1.2";
+          }
+        ];
+      };
       "com.apple.screensaver" = {
         idleTime = 0; # 0 = never
       };
@@ -88,6 +116,13 @@ in
           };
         };
       };
+    };
+
+    spaces."spans-displays" = true;
+
+    menuExtraClock = {
+      ShowDate = 0;
+      ShowDayOfWeek = true;
     };
 
     screencapture = {
