@@ -22,6 +22,27 @@ nix run nixpkgs#deadnix -- .
 nix flake check
 ```
 
+## Nix Option Search
+
+Always use `manix` to search NixOS, Home Manager, and nix-darwin options:
+
+```bash
+manix "services.openssh"
+manix "programs.zsh"
+```
+
+Use `--source` to restrict results when the option type is known:
+
+```bash
+manix --source nixos_options "services.openssh"
+manix --source hm_options "programs.zsh"
+manix --source nd_options "system.defaults"
+```
+
+Available sources: `hm_options`, `nd_options`, `nixos_options`, `nixpkgs_doc`, `nixpkgs_tree`, `nixpkgs_comments`
+
+`manix` is installed on `plessur` in `nix-config` (`hosts/plessur/packages.nix`).
+
 ## Architecture
 
 ### Module Categories
