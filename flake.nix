@@ -130,6 +130,7 @@
             ./modules/nixos/hardening/usbguard.nix
           ];
         };
+        infra-networking = ./modules/nixos/infra-networking.nix;
         locale = ./modules/nixos/locale.nix;
         nfs-client = ./modules/nixos/nfs-client.nix;
         nfs-server = ./modules/nixos/nfs-server.nix;
