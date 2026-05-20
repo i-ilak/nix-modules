@@ -30,7 +30,7 @@ in
       enable = lib.mkEnableOption "ship journald to remote loki via promtail";
       lokiHost = lib.mkOption {
         type = lib.types.str;
-        default = "maloja";
+        example = "loki-host";
         description = "Hostname key in infra.network.ipMap pointing at loki.";
       };
       hostLabel = lib.mkOption {
