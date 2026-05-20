@@ -119,6 +119,7 @@
       };
 
       nixosModules = {
+        auto-upgrade = ./modules/nixos/auto-upgrade.nix;
         infra-options = ./modules/shared/global_variables;
         hardening = {
           imports = [
