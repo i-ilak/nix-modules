@@ -7,21 +7,6 @@
 let
   gitCfg = config.infra.git;
 
-  # Wrap git with LD_PRELOAD for Active Directory NSS resolution.
-  # On AD-managed machines, the user ID is missing from /etc/passwd and needs
-  # to be loaded via the correct shared object.
-  adCustomGitPackage =
-    let
-      inherit (pkgs) git;
-    in
-    pkgs.writeScriptBin "git" ''
-      #!${pkgs.bash}/bin/bash
-      export LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libnss_sss.so.2"
-      exec "${git}/bin/git" "$@"
-    '';
-
-  git-package = if gitCfg.useAdWrapper then adCustomGitPackage else pkgs.git;
-
   signing = lib.mkIf (gitCfg.signingKeyPath != null) {
     format = "ssh";
     key = gitCfg.signingKeyPath;
@@ -31,7 +16,7 @@ in
 {
   programs.git = {
     enable = true;
-    package = git-package;
+    package = pkgs.git;
     ignores = [ "*.swp" ];
     settings = {
       user = {

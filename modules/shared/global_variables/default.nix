@@ -68,11 +68,6 @@
             default = null;
             description = "Path to the allowed_signers file for git signature verification.";
           };
-          useAdWrapper = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Wrap git with LD_PRELOAD for Active Directory NSS resolution.";
-          };
         };
       };
       default = { };
