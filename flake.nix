@@ -83,6 +83,7 @@
       homeManagerModules = {
         infra-options = ./modules/shared/global_variables;
         git = ./modules/home-manager/programs/git.nix;
+        git-sops-signing = ./modules/home-manager/programs/git-sops-signing.nix;
         fish = ./modules/home-manager/programs/fish.nix;
         helix = ./modules/home-manager/programs/helix;
         alacritty = ./modules/home-manager/programs/alacritty.nix;
@@ -155,6 +156,8 @@
         dock = ./modules/darwin/dock;
         desktoppr = ./modules/darwin/desktoppr;
         homebrew = ./modules/darwin/homebrew.nix;
+        nix-homebrew-base = ./modules/darwin/nix-homebrew-base.nix;
+        fish-unstable = import ./modules/darwin/fish-unstable.nix;
         aerospace = ./modules/darwin/aerospace.nix;
         casks = ./modules/darwin/casks.nix;
         power = ./modules/darwin/power.nix;
