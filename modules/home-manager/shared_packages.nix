@@ -1,8 +1,6 @@
 {
   pkgs,
   nixvim,
-  inputs,
-  flakeRoot ? inputs.self,
   ...
 }:
 let
@@ -45,7 +43,7 @@ let
     llvmPackages_20.clang-unwrapped
   ];
 
-  scripts = import (flakeRoot + /modules/shared/scripts.nix) { inherit pkgs; };
+  scripts = import ../shared/scripts.nix { inherit pkgs; };
   shared_packages = cli_tools ++ developer_tools ++ scripts;
 in
 shared_packages

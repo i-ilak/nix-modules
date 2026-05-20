@@ -71,7 +71,7 @@ lib.nfs
 - **No secrets, no personal values** — modules only declare options and use `config.infra.*` to read values set by the consumer.
 - **No hostname checks** — modules use option values (e.g., `config.infra.host.sshAuthSock`) instead of `if hostname == "foo"` branching.
 - **Parameterized paths** — use `config.infra.host.homeDir` instead of hardcoded `/home/iilak`.
-- **Consumer passes `flakeRoot`** — function-style imports like `shared_packages.nix` accept `flakeRoot` to resolve paths within this repo (scripts, dotfiles).
+- **In-repo paths use relative imports** — function-style modules like `shared_packages.nix` and `files.nix` reach scripts/dotfiles via relative paths (`../shared/scripts.nix`, `../../dotfiles/linux/hypr`), not via a `flakeRoot` arg threaded by the consumer.
 
 ## Consumed By
 
