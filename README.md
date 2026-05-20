@@ -9,7 +9,7 @@ Add as a flake input:
 ```nix
 {
   inputs.nix-modules = {
-    url = "github:i-ilak/nix-modules";
+    url = "git+https://tangled.org/ilak.ch/nix-modules?ref=main";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 }
@@ -40,15 +40,16 @@ inputs.nix-modules.darwinModules.aerospace
 
 ### nixosModules
 
-`infra-options`, `hardening`, `locale`, `nfs-client`, `nfs-server`, `restic-backup`, `packages`
+`infra-options`, `hardening`, `infra-monitoring`, `infra-networking`, `locale`, `mosquitto`, `nfs-client`, `nfs-server`, `packages`, `persist`, `restic-backup`, `zigbee2mqtt`, `default`
 
 ### darwinModules
 
-`infra-options`, `system`, `dock`, `desktoppr`, `homebrew`, `aerospace`, `casks`
+`infra-options`, `system`, `dock`, `desktoppr`, `homebrew`, `aerospace`, `casks`, `power`
 
 ### lib
 
 `nfs` — NFS export helper functions
+`vim` — vim/ideavim/vscode configuration generators
 
 ## Configuration Options
 
@@ -68,6 +69,39 @@ Modules use the `infra.*` option namespace. Import `infra-options` and set value
   infra.desktop = {
     fontSize = 13;
     i3.modifier = "Mod4";
+  };
+}
+```
+
+### Profiles (NixOS)
+
+The `infra-networking`, `infra-monitoring`, and `hardening` modules expose `infra.profiles.*` options for high-level, opinionated configuration shared across a personal fleet:
+
+```nix
+{
+  # SSH hardening — see modules/nixos/hardening/sshd.nix
+  infra.profiles.sshd = {
+    allowUsers = [ "root" ];
+    ports = [ 22023 ];
+  };
+
+  # Static networking + firewall — see modules/nixos/infra-networking.nix
+  infra.profiles.networking = {
+    enable = true;
+    interface = "enp3s0";
+    extraTcpPorts = [ 80 443 ];
+    monitoringExporters = [ "node_exporter" "systemd_exporter" ];
+  };
+
+  # Prometheus exporters + promtail — see modules/nixos/infra-monitoring.nix
+  infra.profiles.monitoring = {
+    enable = true;
+    listenAddress = "10.0.0.1";
+    exporters = [ "node" "systemd" ];
+    promtail = {
+      enable = true;
+      hostLabel = "myhost";
+    };
   };
 }
 ```
