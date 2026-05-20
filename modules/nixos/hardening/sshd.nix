@@ -35,7 +35,7 @@
         TCPKeepAlive = false;
         LogLevel = "VERBOSE";
       };
-      ports = config.infra.profiles.sshd.ports;
+      inherit (config.infra.profiles.sshd) ports;
       hostKeys = [
         {
           type = "ed25519";

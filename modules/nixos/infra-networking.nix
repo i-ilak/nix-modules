@@ -68,7 +68,7 @@ in
     networking = {
       hostName = config.infra.host.hostname;
       useDHCP = false;
-      nameservers = cfg.nameservers;
+      inherit (cfg) nameservers;
       defaultGateway.address = config.infra.network.gatewayMap.${config.infra.host.hostname}.ipv4;
       interfaces.${cfg.interface}.ipv4.addresses = [
         {

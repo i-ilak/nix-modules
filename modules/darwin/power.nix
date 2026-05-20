@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+_: {
   power.sleep.display = "never";
 
   # systemsetup (used by nix-darwin's power.sleep.display) is deprecated on

@@ -47,21 +47,21 @@ in
           enable = true;
           enabledCollectors = [ "systemd" ];
           inherit (config.infra.services.node_exporter) port;
-          listenAddress = cfg.listenAddress;
+          inherit (cfg) listenAddress;
         };
       })
       (lib.mkIf (builtins.elem "systemd" cfg.exporters) {
         systemd = {
           enable = true;
           inherit (config.infra.services.systemd_exporter) port;
-          listenAddress = cfg.listenAddress;
+          inherit (cfg) listenAddress;
         };
       })
       (lib.mkIf (builtins.elem "unbound" cfg.exporters) {
         unbound = {
           enable = true;
           inherit (config.infra.services.unbound_exporter) port;
-          listenAddress = cfg.listenAddress;
+          inherit (cfg) listenAddress;
           unbound = {
             host = "unix:///${config.services.unbound.settings.remote-control.control-interface}";
             ca = null;
