@@ -11,6 +11,17 @@
       default = [ 22023 ];
       description = "SSH listen ports.";
     };
+    permitRootLogin = lib.mkOption {
+      type = lib.types.enum [
+        "yes"
+        "without-password"
+        "prohibit-password"
+        "forced-commands-only"
+        "no"
+      ];
+      default = "no";
+      description = "Value for sshd_config PermitRootLogin. Default 'no' is the hardened baseline; consumers needing key-based root login set 'prohibit-password'.";
+    };
   };
 
   config = {
@@ -20,7 +31,7 @@
         PasswordAuthentication = false;
         PermitEmptyPasswords = false;
         PermitTunnel = false;
-        PermitRootLogin = "no";
+        PermitRootLogin = config.infra.profiles.sshd.permitRootLogin;
         UseDns = false;
         KbdInteractiveAuthentication = false;
         AllowTcpForwarding = true;
