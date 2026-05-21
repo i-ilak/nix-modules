@@ -14,17 +14,19 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nix.settings.allowed-users = lib.mkDefault [ "root" ];
+    nix = {
+      settings.allowed-users = lib.mkDefault [ "root" ];
 
-    nix.gc = lib.mkIf cfg.enableGc {
-      automatic = lib.mkDefault true;
-      dates = lib.mkDefault "weekly";
-      options = lib.mkDefault "--delete-older-than 3d";
-    };
+      gc = lib.mkIf cfg.enableGc {
+        automatic = lib.mkDefault true;
+        dates = lib.mkDefault "weekly";
+        options = lib.mkDefault "--delete-older-than 3d";
+      };
 
-    nix.optimise = lib.mkIf cfg.enableGc {
-      automatic = lib.mkDefault true;
-      dates = lib.mkDefault [ "Sun 03:00" ];
+      optimise = lib.mkIf cfg.enableGc {
+        automatic = lib.mkDefault true;
+        dates = lib.mkDefault [ "Sun 03:00" ];
+      };
     };
   };
 }

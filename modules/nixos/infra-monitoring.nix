@@ -83,7 +83,9 @@ in
 
         clients = [
           {
-            url = "http://${config.infra.network.ipMap.${cfg.promtail.lokiHost}.ipv4}:${toString config.infra.services.loki.port}/loki/api/v1/push";
+            url = "http://${
+              config.infra.network.ipMap.${cfg.promtail.lokiHost}.ipv4
+            }:${toString config.infra.services.loki.port}/loki/api/v1/push";
           }
         ];
 

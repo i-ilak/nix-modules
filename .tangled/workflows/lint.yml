@@ -3,14 +3,11 @@ when:
     branch: ["main"]
   - event: ["pull_request"]
     branch: ["main"]
-
 engine: "nixery"
-
 dependencies:
   nixpkgs:
     - statix
     - deadnix
-
 steps:
   - name: "statix check"
     command: "statix check ."

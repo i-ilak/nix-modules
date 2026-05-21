@@ -3,16 +3,12 @@ when:
     branch: ["main"]
   - event: ["pull_request"]
     branch: ["main"]
-
 engine: "nixery"
-
 dependencies:
   nixpkgs:
     - nix
-
 environment:
   NIX_CONFIG: "experimental-features = nix-command flakes"
-
 steps:
   - name: "nix flake check"
     command: "nix flake check --all-systems"
