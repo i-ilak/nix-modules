@@ -14,6 +14,6 @@ jobs:
           git clone --mirror https://tangled.org/ilak.ch/${{ github.event.repository.name }} tangled.git
           cd tangled.git
           git config --unset remote.origin.mirror
-          git remote set-url --push origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url --push origin https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/${{ github.repository }}.git
           git push --force origin 'refs/heads/*:refs/heads/*'
           git push --force origin 'refs/tags/*:refs/tags/*'
