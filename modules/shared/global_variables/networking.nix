@@ -25,7 +25,11 @@ in
         options = {
           publicDomain = lib.mkOption {
             type = lib.types.str;
-            description = "Public DNS domain used for service subdomains and ACME certs.";
+            description = "Public DNS domain (CF-fronted) used for externally exposed service subdomains and their ACME certs.";
+          };
+          internalDomain = lib.mkOption {
+            type = lib.types.str;
+            description = "LAN-only DNS domain used for internal service subdomains and their ACME certs. Resolved via the LAN DNS server (AdGuard on bernina) and Tailscale split-DNS.";
           };
           ipMap = lib.mkOption {
             type = lib.types.attrsOf hostIpType;
