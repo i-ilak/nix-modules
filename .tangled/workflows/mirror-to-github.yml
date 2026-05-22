@@ -8,7 +8,8 @@ dependencies:
 steps:
   - name: "Mirror to GitHub"
     command: |
-      git fetch --prune --tags origin '+refs/heads/*:refs/heads/*'
+      git fetch --unshallow --prune --tags origin '+refs/heads/*:refs/heads/*' || \
+        git fetch --prune --tags origin '+refs/heads/*:refs/heads/*'
       git remote add github "https://x-access-token:${GITHUB_TOKEN}@github.com/i-ilak/nix-modules.git"
       git push --force github 'refs/heads/*:refs/heads/*'
       git push --force github 'refs/tags/*:refs/tags/*'
